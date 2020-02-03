@@ -40,22 +40,33 @@ private:
 	SceneObject* grenadeLauncher;
 	
 	Cappuccino::Texture* pistolTexDiffuse;
+	Cappuccino::Texture* pistolTexSpecular;
 	Cappuccino::Texture* pistolTexEmissive;
 	Cappuccino::Texture* pistolTexNormal;
 
 	Cappuccino::Texture* autoRifleTexDiffuse;
+	Cappuccino::Texture* autoRifleTexSpecular;
 	Cappuccino::Texture* autoRifleTexEmissive;
 	Cappuccino::Texture* autoRifleTexNormal;
 
 	Cappuccino::Texture* marksmanRifleTexDiffuse;
+	Cappuccino::Texture* marksmanRifleTexSpecular;
 	Cappuccino::Texture* marksmanRifleTexEmissive;
 	Cappuccino::Texture* marksmanRifleTexNormal;
 
 	Cappuccino::Texture* shotgunTexDiffuse;
+	Cappuccino::Texture* shotgunTexSpecular;
 	Cappuccino::Texture* shotgunTexEmissive;
 	Cappuccino::Texture* shotgunTexNormal;
 
 	Cappuccino::Texture* grenadeLauncherTexDiffuse;
+	Cappuccino::Texture* grenadeLauncherTexSpecular;
 	Cappuccino::Texture* grenadeLauncherTexEmissive;
 	Cappuccino::Texture* grenadeLauncherTexNormal;
+
+	bool diffuseWarp = false;
+	bool specularWarp = false;
+	bool warmGrading = false;
+	bool coolGrading = false;
+	bool customGrading = false;
 };

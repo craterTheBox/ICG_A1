@@ -49,6 +49,7 @@ struct Spotlight {
 struct Material {
 	sampler2D diffuseMap;
 	sampler2D specularMap;
+	sampler2D emissionMap;
 	float roughness;
 };
 
@@ -70,6 +71,15 @@ uniform Spotlight uSpotlights[MAX_SPOTLIGHTS];
 
 uniform Material uMaterial;
 
+uniform bool ambientLighting = true;
+uniform bool specularLighting = true;
+uniform bool rimLighting = false;
+uniform bool diffuseWarp = false;
+uniform bool specularWarp = false;
+uniform bool warmGrading = false;
+uniform bool coolGrading = false;
+uniform bool customGrading = false;
+
 // -----------------------------------------------
 // ----- Functions -------------------------------
 // -----------------------------------------------
@@ -88,6 +98,31 @@ void main() {
 	
 	vec3 result = uAmbientColour * uAmbientPower * texture(uMaterial.diffuseMap, inUV).xyz;
 
+	if (ambientLighting) {
+		result += uAmbientColour * uAmbientPower * texture(uMaterial.diffuseMap,inUV).xyz;
+	}
+	else if (specularLighting) {
+		
+	}
+	else if (rimLighting) {
+		//
+	}
+	else if (diffuseWarp) {
+		//
+	}
+	else if (specularWarp) {
+		//
+	}
+	else if (warmGrading) {
+		//
+	}
+	else if (coolGrading) {
+		//
+	}
+	else if (customGrading) {
+		//
+	}
+
 	for(int i = 0; i < uNumDirectionalLights; ++i) {
 		if(i >= MAX_DIR_LIGHTS) break;
 		result += calculateDirectionalLight(uDirectionalLights[i], normal, viewDirection);
@@ -103,6 +138,8 @@ void main() {
 		result += calculateSpotlight(uSpotlights[i], normal, viewDirection);
 	}
 
+	result += texture(uMaterial.emissionMap, inUV).xyz;
+
 	outColour = vec4(result, 1.0);
 }
 
@@ -115,11 +152,13 @@ vec3 calculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDir
 
 	float diffusePower = max(dot(normal, lightDirection), 0.0);
 	vec3 diffuse = light.colour * diffusePower * texture(uMaterial.diffuseMap, inUV).xyz;
+	vec3 specular = new vec3(0.0f, 0.0f, 0.0f);
 
-	vec3 halfwayDirection = normalize(lightDirection + viewDirection);
-	float specularPower = pow(max(dot(viewDirection, halfwayDirection), 0.0), (1 - uMaterial.roughness) * 256);
-	vec3 specular = light.colour * specularPower * texture(uMaterial.specularMap, inUV).xyz;
-
+	if (specularLighting) {
+		vec3 halfwayDirection = normalize(lightDirection + viewDirection);
+		float specularPower = pow(max(dot(viewDirection, halfwayDirection), 0.0), (1 - uMaterial.roughness) * 256);
+		specular = light.colour * specularPower * texture(uMaterial.specularMap, inUV).xyz;
+	}
 	return diffuse + specular;
 }
 
