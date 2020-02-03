@@ -8,7 +8,6 @@ using Shader      = Cappuccino::Shader;
 using SoundSystem = Cappuccino::SoundSystem;
 using Texture     = Cappuccino::Texture;
 
-
 #pragma region PROGRAM SETTINGS
 
 constexpr GLuint  SCR_WIDTH = 1600;
@@ -26,12 +25,10 @@ extern "C" {
 }
 
 int main() {
-
-	if(!Application::isInstantiated()) {
-
+	if (!Application::isInstantiated()) {
 		Cappuccino::Viewport view{ glm::vec4(1.0f,0.0f,0.0f,1.0f),glm::vec4(0.0f,0.0f,SCR_WIDTH,SCR_HEIGHT),[]() {} };
 
-		Application* application = new Application(SCR_WIDTH, SCR_HEIGHT, SCR_TITLE, {view});
+		Application* application = new Application(SCR_WIDTH, SCR_HEIGHT, SCR_TITLE, { view });
 		application->init();
 
 		// Create your scenes here
@@ -45,14 +42,11 @@ int main() {
 		SoundSystem::setDefaultPath("./Assets/Sounds/");
 		Texture::setDefaultPath("./Assets/Textures/");
 
-
 		MainScene* m = new MainScene(true);
 		m->init();
 
 		application->run();
 		delete application;
 	}
-
 	return 0;
-
 }

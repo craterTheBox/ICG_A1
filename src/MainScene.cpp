@@ -1,5 +1,16 @@
 #include "MainScene.h"
 
+/**TODO
+- Lighting
+	- Diffuse, ambient, and specular
+	- Rim lighting of the objects
+	- TF2 lighting
+- Colour grading and Colour Correction
+	- Warm LUT
+	- Cool LUT
+	- Custom LUT (greyscale maybe?)
+*/
+
 MainScene::MainScene(bool yn)
 	:Scene(yn),	phongShader("BlinnPhongShader.vert", "BlinnPhongShader.frag"),
 	input(true, std::nullopt) {
@@ -35,16 +46,28 @@ MainScene::MainScene(bool yn)
 	shotgun = new SceneObject(phongShader, { shotgunTexDiffuse, shotgunTexEmissive, shotgunTexNormal }, { new Cappuccino::Mesh("shotgun.obj") });
 	grenadeLauncher = new SceneObject(phongShader, { grenadeLauncherTexDiffuse, grenadeLauncherTexEmissive, grenadeLauncherTexNormal }, { new Cappuccino::Mesh("grenadeLauncher.obj") });
 
-	
+	//Spacing the models out so they're all visible
+	autoRifle->_rigidBody._position = glm::vec3(-4.0f, -1.0f, 0.0f);
+	marksmanRifle->_rigidBody._position = glm::vec3(-2.0f, 1.0f, 0.0f);
+	pistol->_rigidBody._position = glm::vec3(0.0f, -1.0f, 0.0f);
+	shotgun->_rigidBody._position = glm::vec3(2.0f, 1.0f, 0.0f);
+	grenadeLauncher->_rigidBody._position = glm::vec3(4.0f, -1.0f, 0.0f);
 
-	glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//Spinning of the models for  j u i c e
+	autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
+	marksmanRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
+	pistol->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
+	shotgun->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
+	grenadeLauncher->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
+
+	glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
 void MainScene::childUpdate(float dt) {
 	phongShader.use();
 	phongShader.loadViewMatrix(camera);
 	
-	//Movement of the camera with WASDQE
+	//Movement of the camera with WASD and QE
 	if (input.keyboard->keyPressed(Events::W) ||
 		input.keyboard->keyPressed(Events::A) ||
 		input.keyboard->keyPressed(Events::S) ||
@@ -54,30 +77,58 @@ void MainScene::childUpdate(float dt) {
 
 		glm::vec3 moveForce = glm::vec3(0.0f, 0.0f, 0.0f);
 
-		if (input.keyboard->keyPressed(Events::W)) {
+		if (input.keyboard->keyPressed(Events::W)) {	//Forward
 			moveForce += glm::vec3(camera.getFront().x, 0, camera.getFront().z) * 10.0f * dt;
 		}
-		else if (input.keyboard->keyPressed(Events::S)) {
+		else if (input.keyboard->keyPressed(Events::S)) {	//BAckward
 			moveForce += -glm::vec3(camera.getFront().x, 0, camera.getFront().z) * 10.0f * dt;
 		}
-		if (input.keyboard->keyPressed(Events::A)) {
+		if (input.keyboard->keyPressed(Events::A)) {	//Left
 			moveForce += -glm::vec3(1.0f, 0.0f, 0.0f) * 10.0f * dt;
 		}
-		else if (input.keyboard->keyPressed(Events::D)) {
+		else if (input.keyboard->keyPressed(Events::D)) {	//Right
 			moveForce += glm::vec3(1.0f, 0.0f, 0.0f) * 10.0f * dt;
 		}
-		if (input.keyboard->keyPressed(Events::Q)) {
+		if (input.keyboard->keyPressed(Events::Q)) {	//Up
 			moveForce += glm::vec3(0, camera.getUp().y, 0) * 10.0f * dt;
 		}
-		else if (input.keyboard->keyPressed(Events::E)) {
+		else if (input.keyboard->keyPressed(Events::E)) {	//Down
 			moveForce += -glm::vec3(0, camera.getUp().y, 0) * 10.0f * dt;
 		}
-
 		camera.setPosition(camera.getPosition() + moveForce);
 	}
 
-	//Spinning of the autoRifle
-	autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 90 * dt);
+	//Toggle Keys
+	if (input.keyboard->keyPressed(Events::One)) {
+		//No lighting
+	}
+	else if (input.keyboard->keyPressed(Events::Two)) {
+		//Ambient only
+	}
+	else if (input.keyboard->keyPressed(Events::Three)) {
+		//Specular only
+	}
+	else if (input.keyboard->keyPressed(Events::Four)) {
+		//Specular + Rim lighting
+	}
+	else if (input.keyboard->keyPressed(Events::Five)) {
+		//Ambient + Specular + Rim lighting
+	}
+	else if (input.keyboard->keyPressed(Events::Six)) {
+		//TOGGLE diffuse warp/ramp
+	}
+	else if (input.keyboard->keyPressed(Events::Seven)) {
+		//TOGGLE specular warp/ramp
+	}
+	else if (input.keyboard->keyPressed(Events::Eight)) { 
+		//TOGGLE colour grading warm
+	}
+	else if (input.keyboard->keyPressed(Events::Nine)) {
+		//TOGGLE colour grading cool
+	}
+	else if (input.keyboard->keyPressed(Events::Zero)) {
+		//TOGGLE colour grading custom effect
+	}
 }
 
 bool MainScene::init() {
