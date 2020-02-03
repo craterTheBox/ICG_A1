@@ -33,10 +33,29 @@ private:
 	Cappuccino::Shader mainShader;
 	Cappuccino::Shader phongShader;
 
-	Cappuccino::Texture* baseTex;
+	SceneObject* pistol;
+	SceneObject* autoRifle;
+	SceneObject* marksmanRifle;
+	SceneObject* shotgun;
+	SceneObject* grenadeLauncher;
+	
+	Cappuccino::Texture* pistolTexDiffuse;
+	Cappuccino::Texture* pistolTexEmissive;
+	Cappuccino::Texture* pistolTexNormal;
 
-	SceneObject* test;
-	SceneObject* sphere;
-	SceneObject* sphere2;
+	Cappuccino::Texture* autoRifleTexDiffuse;
+	Cappuccino::Texture* autoRifleTexEmissive;
+	Cappuccino::Texture* autoRifleTexNormal;
+
+	Cappuccino::Texture* marksmanRifleTexDiffuse;
+	Cappuccino::Texture* marksmanRifleTexEmissive;
+	Cappuccino::Texture* marksmanRifleTexNormal;
+
+	Cappuccino::Texture* shotgunTexDiffuse;
+	Cappuccino::Texture* shotgunTexEmissive;
+	Cappuccino::Texture* shotgunTexNormal;
+
+	Cappuccino::Texture* grenadeLauncherTexDiffuse;
+	Cappuccino::Texture* grenadeLauncherTexEmissive;
+	Cappuccino::Texture* grenadeLauncherTexNormal;
 };
-

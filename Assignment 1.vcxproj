@@ -99,9 +99,6 @@
     <ClCompile Include="src\MainScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\reeee.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\MainScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

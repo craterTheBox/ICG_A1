@@ -1,4 +1,4 @@
-#version 460
+#version 420
 
 #define MAX_DIR_LIGHTS 10
 #define MAX_POINT_LIGHTS 50
@@ -49,9 +49,6 @@ struct Spotlight {
 struct Material {
 	sampler2D diffuseMap;
 	sampler2D specularMap;
-	sampler2D normalMap;
-	sampler2D emissionMap;
-	sampler2D bumpMap;	
 	float roughness;
 };
 
@@ -105,9 +102,6 @@ void main() {
 		if(i >= MAX_SPOTLIGHTS) break;
 		result += calculateSpotlight(uSpotlights[i], normal, viewDirection);
 	}
-
-	vec3 emission = texture(uMaterial.emissionMap, inUV).rgb;
-	result += emission;
 
 	outColour = vec4(result, 1.0);
 }
