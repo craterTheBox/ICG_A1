@@ -51,7 +51,7 @@ struct Material {
 	sampler2D specularMap;
 	sampler2D emissionMap;
 	float roughness;
-	//texture1D rampTex;
+	//texture1D warpTex;
 };
 
 // -----------------------------------------------
@@ -88,7 +88,8 @@ uniform bool customGrading = false;
 vec3 calculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDirection);
 vec3 calculatePointLight(PointLight light, vec3 normal, vec3 viewDirection);
 vec3 calculateSpotlight(Spotlight light, vec3 normal, vec3 viewDirection);
-//float diffuseRamp(vec3 pos, vec3 normal, vec3 lightPos);
+//vec3 diffuseWarp(vec3 pos, vec3 normal, vec3 lightPos);
+//vec3 specularWarp(vec3 pos, vec3 normal, vec3 lightPos);
 
 // -----------------------------------------------
 // ----- MAIN ------------------------------------
@@ -110,10 +111,10 @@ void main() {
 		//
 	}
 	else if (diffuseWarp) {
-		//diffuseRamp(inWorldPosition, normal, viewDirection);
+		//diffuseWarp(inWorldPosition, normal, viewDirection);
 	}
 	else if (specularWarp) {
-		//
+		//specularWarp(inWorldPosition, normal, viewDirection);
 	}
 	else if (warmGrading) {
 		//
@@ -202,12 +203,22 @@ vec3 calculateSpotlight(Spotlight light, vec3 normal, vec3 viewDirection) {
 	return intensity * attenuation * (diffuse + specular);
 }
 
-//float diffuseRamp(vec3 pos, vec3 normal, vec3 lightPos){
-//	float3 lightDirrection = lightPos - pos; 
+//vec3 specularWarp(vec3 pos, vec3 normal, vec3 lightPos){
+//	vec3 lightDirrection = lightPos - pos; 
 //	lightDirection = normalize(lightDirection);
 //
 //	//texture map values
-//	float rampPos = dot(lightDirection, normal) * 0.5 + 0.5;
+//	vec3 WarpPos = dot(lightDirection, normal) * 0.5 + 0.5;
 //	
-//	return tex1D(rampTex, rampPos);
+//	return tex1D(WarpTex, WarpPos);
+//}
+
+//vec3 diffuseWarp(vec3 pos, vec3 normal, vec3 lightPos){
+//	vec3 lightDirrection = lightPos - pos; 
+//	lightDirection = normalize(lightDirection);
+//
+//	//texture map values
+//	vec3 warpPos = dot(lightDirection, normal) * 0.5 + 0.5;
+//	
+//	return tex1D(warpTex, warpPos);
 //}
