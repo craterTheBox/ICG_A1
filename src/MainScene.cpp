@@ -69,13 +69,6 @@ MainScene::MainScene(bool yn)
 	shotgun->_rigidBody._position = glm::vec3(2.0f, 1.0f, 0.0f);
 	grenadeLauncher->_rigidBody._position = glm::vec3(4.0f, -1.0f, 0.0f);
 
-	//Spinning of the models for  j u i c e
-	autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
-	marksmanRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
-	pistol->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
-	shotgun->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
-	grenadeLauncher->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45);
-
 	glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
@@ -181,6 +174,12 @@ void MainScene::childUpdate(float dt) {
 		else if (!customGrading)
 			phongShader.setUniform("customGrading", true);
 	}
+	//Spinning of the models for  j u i c e
+	autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+	marksmanRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+	pistol->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+	shotgun->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+	grenadeLauncher->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
 }
 
 bool MainScene::init() {
