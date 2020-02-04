@@ -51,6 +51,7 @@ struct Material {
 	sampler2D specularMap;
 	sampler2D emissionMap;
 	float roughness;
+	//texture1D rampTex;
 };
 
 // -----------------------------------------------
@@ -87,6 +88,7 @@ uniform bool customGrading = false;
 vec3 calculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDirection);
 vec3 calculatePointLight(PointLight light, vec3 normal, vec3 viewDirection);
 vec3 calculateSpotlight(Spotlight light, vec3 normal, vec3 viewDirection);
+//float diffuseRamp(vec3 pos, vec3 normal, vec3 lightPos);
 
 // -----------------------------------------------
 // ----- MAIN ------------------------------------
@@ -102,13 +104,13 @@ void main() {
 		result += uAmbientColour * uAmbientPower * texture(uMaterial.diffuseMap,inUV).xyz;
 	}
 	else if (specularLighting) {
-		
+		//
 	}
 	else if (rimLighting) {
 		//
 	}
 	else if (diffuseWarp) {
-		//
+		//diffuseRamp(inWorldPosition, normal, viewDirection);
 	}
 	else if (specularWarp) {
 		//
@@ -199,3 +201,13 @@ vec3 calculateSpotlight(Spotlight light, vec3 normal, vec3 viewDirection) {
 
 	return intensity * attenuation * (diffuse + specular);
 }
+
+//float diffuseRamp(vec3 pos, vec3 normal, vec3 lightPos){
+//	float3 lightDirrection = lightPos - pos; 
+//	lightDirection = normalize(lightDirection);
+//
+//	//texture map values
+//	float rampPos = dot(lightDirection, normal) * 0.5 + 0.5;
+//	
+//	return tex1D(rampTex, rampPos);
+//}

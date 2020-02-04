@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{3824E0A7-24C6-0A7E-0D81-1ED2F9C191CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Meshes">
+      <UniqueIdentifier>{6C1729D9-D8D7-A40F-A112-EE8C0D92E9EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{1101E1D1-FDCE-D4D7-E662-45FED2CFB03C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures">
+      <UniqueIdentifier>{0B35254A-77C0-920E-80D1-1503ECDBEE0E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures\autoRifle">
+      <UniqueIdentifier>{A5526CAE-1115-A038-5AC5-2EC5C6C67816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures\grenadeLauncher">
+      <UniqueIdentifier>{82E71583-EECA-24C3-F7CD-52FF6330EB13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures\marksmanRifle">
+      <UniqueIdentifier>{261D39DE-9235-2008-5BE2-AFA1C7B9B4A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures\pistol">
+      <UniqueIdentifier>{35C14BC5-21BB-7417-0A28-0B28F6C0DA83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures\shotgun">
+      <UniqueIdentifier>{02F31453-6E2A-5DEA-7734-C10DE3EA83E3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
     </Filter>
@@ -9,16 +36,155 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClInclude Include="include\MainScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MainScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\MainScene.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\MainScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
+    <None Include="Assets\Meshes\autoRifle.obj">
+      <Filter>Assets\Meshes</Filter>
+    </None>
+    <None Include="Assets\Meshes\grenadeLauncher.obj">
+      <Filter>Assets\Meshes</Filter>
+    </None>
+    <None Include="Assets\Meshes\marksmanRifle.obj">
+      <Filter>Assets\Meshes</Filter>
+    </None>
+    <None Include="Assets\Meshes\pistol.obj">
+      <Filter>Assets\Meshes</Filter>
+    </None>
+    <None Include="Assets\Meshes\shotgun.obj">
+      <Filter>Assets\Meshes</Filter>
+    </None>
+    <None Include="Assets\Shaders\BlinnPhongShader.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\BlinnPhongShader.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\hitBox.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\hitBox.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\mainFrag.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\mainVert.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-BaseColor.png">
+      <Filter>Assets\Textures\autoRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Emissive.png">
+      <Filter>Assets\Textures\autoRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Height.png">
+      <Filter>Assets\Textures\autoRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Metallic.png">
+      <Filter>Assets\Textures\autoRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Normal.png">
+      <Filter>Assets\Textures\autoRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Roughness.png">
+      <Filter>Assets\Textures\autoRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\defaultEmission.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Textures\defaultHeight.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Textures\defaultNorm.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-BaseColor.png">
+      <Filter>Assets\Textures\grenadeLauncher</Filter>
+    </Image>
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Emissive.png">
+      <Filter>Assets\Textures\grenadeLauncher</Filter>
+    </Image>
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Height.png">
+      <Filter>Assets\Textures\grenadeLauncher</Filter>
+    </Image>
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Metallic.png">
+      <Filter>Assets\Textures\grenadeLauncher</Filter>
+    </Image>
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Normal.png">
+      <Filter>Assets\Textures\grenadeLauncher</Filter>
+    </Image>
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Roughness.png">
+      <Filter>Assets\Textures\grenadeLauncher</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\markmanRifle-Roughness.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-AO.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-BaseColor.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Emissive.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Height.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Metallic.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Normal.png">
+      <Filter>Assets\Textures\marksmanRifle</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pistol\pistol-BaseColor.png">
+      <Filter>Assets\Textures\pistol</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pistol\pistol-Emissive.png">
+      <Filter>Assets\Textures\pistol</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pistol\pistol-Height.png">
+      <Filter>Assets\Textures\pistol</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pistol\pistol-Metallic.png">
+      <Filter>Assets\Textures\pistol</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pistol\pistol-Normal.png">
+      <Filter>Assets\Textures\pistol</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pistol\pistol-Roughness.png">
+      <Filter>Assets\Textures\pistol</Filter>
+    </Image>
+    <Image Include="Assets\Textures\shotgun\shotgun-BaseColor.png">
+      <Filter>Assets\Textures\shotgun</Filter>
+    </Image>
+    <Image Include="Assets\Textures\shotgun\shotgun-Emissive.png">
+      <Filter>Assets\Textures\shotgun</Filter>
+    </Image>
+    <Image Include="Assets\Textures\shotgun\shotgun-Height.png">
+      <Filter>Assets\Textures\shotgun</Filter>
+    </Image>
+    <Image Include="Assets\Textures\shotgun\shotgun-Metallic.png">
+      <Filter>Assets\Textures\shotgun</Filter>
+    </Image>
+    <Image Include="Assets\Textures\shotgun\shotgun-Normal.png">
+      <Filter>Assets\Textures\shotgun</Filter>
+    </Image>
+    <Image Include="Assets\Textures\shotgun\shotgun-Roughness.png">
+      <Filter>Assets\Textures\shotgun</Filter>
+    </Image>
   </ItemGroup>
 </Project>
