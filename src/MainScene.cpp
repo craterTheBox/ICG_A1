@@ -31,27 +31,27 @@ MainScene::MainScene(bool yn)
 
 	//Textures
 	pistolTexDiffuse = new Cappuccino::Texture("pistol/pistol-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	pistolTexSpecular = new Cappuccino::Texture("pistol/pistol-Specular.png", Cappuccino::TextureType::SpecularMap);
+	pistolTexSpecular = new Cappuccino::Texture("pistol/pistol-BaseColor.png", Cappuccino::TextureType::SpecularMap);
 	pistolTexEmissive = new Cappuccino::Texture("pistol/pistol-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	pistolTexNormal = new Cappuccino::Texture("pistol/pistol-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	autoRifleTexDiffuse = new Cappuccino::Texture("autoRifle/autoRifle-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	autoRifleTexSpecular = new Cappuccino::Texture("autoRifle/autoRifle-Specular.png", Cappuccino::TextureType::SpecularMap);
+	autoRifleTexSpecular = new Cappuccino::Texture("autoRifle/autoRifle-BaseColor.png", Cappuccino::TextureType::SpecularMap);
 	autoRifleTexEmissive = new Cappuccino::Texture("autoRifle/autoRifle-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	autoRifleTexNormal = new Cappuccino::Texture("autoRifle/autoRifle-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	marksmanRifleTexDiffuse = new Cappuccino::Texture("marksmanRifle/marksmanRifle-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	marksmanRifleTexSpecular = new Cappuccino::Texture("marksmanRifle/marksmanRifle-Specular.png", Cappuccino::TextureType::SpecularMap);
+	marksmanRifleTexSpecular = new Cappuccino::Texture("marksmanRifle/marksmanRifle-BaseColor.png", Cappuccino::TextureType::SpecularMap);
 	marksmanRifleTexEmissive = new Cappuccino::Texture("marksmanRifle/marksmanRifle-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	marksmanRifleTexNormal = new Cappuccino::Texture("marksmanRifle/marksmanRifle-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	shotgunTexDiffuse = new Cappuccino::Texture("shotgun/shotgun-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	shotgunTexSpecular = new Cappuccino::Texture("shotgun/shotgun-Specular.png", Cappuccino::TextureType::SpecularMap);
+	shotgunTexSpecular = new Cappuccino::Texture("shotgun/shotgun-BaseColor.png", Cappuccino::TextureType::SpecularMap);
 	shotgunTexEmissive = new Cappuccino::Texture("shotgun/shotgun-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	shotgunTexNormal = new Cappuccino::Texture("shotgun/shotgun-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	grenadeLauncherTexDiffuse = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	grenadeLauncherTexSpecular = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-Specular.png", Cappuccino::TextureType::SpecularMap);
+	grenadeLauncherTexSpecular = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-BaseColor.png", Cappuccino::TextureType::SpecularMap);
 	grenadeLauncherTexEmissive = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	grenadeLauncherTexNormal = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-Normal.png", Cappuccino::TextureType::NormalMap);
 
