@@ -1,4 +1,4 @@
-workspace ("ICG_A1")
+workspace ("Assignment 1")
     location("./")
 
     defines "_CRT_SECURE_NO_WARNINGS"
