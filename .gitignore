@@ -30,3 +30,17 @@ Build/bin/x64/Debug/Assignment 1.ilk
 Build/bin/x64/Debug/Assignment 1.exp
 
 Assignment 1.vcxproj.user
+
+.vs/ICG Assignments/v16/.suo
+
+Build/bin/x64/Release/Assets/
+
+Build/bin/x64/Release/Assignment 1.exe
+
+Build/bin/x64/Release/Assignment 1.exp
+
+Build/bin/x64/Release/Assignment 1.lib
+
+Build/obj/x64/Release/main.obj
+
+Build/obj/x64/Release/MainScene.obj
