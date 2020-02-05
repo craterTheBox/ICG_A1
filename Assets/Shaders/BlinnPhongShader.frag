@@ -146,7 +146,7 @@ void main() {
 		result += vec3(rim, rim, rim) * vec3(1.0, 0.0, 0.0);
 	}
 
-	if (noLighting)
+	if (noLighting)	//Turns everything black due to a lack of light
 		result = vec3(0.0, 0.0, 0.0);
 
 	outColour = vec4(result, 1.0);

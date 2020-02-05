@@ -24,7 +24,7 @@ MainScene::MainScene(bool yn)
 
 	phongShader.setUniform("uCameraPosition", camera.getPosition());
 
-	phongShader.setUniform("uAmbientColour", glm::vec3(0.5f, 0.5f, 0.5f));
+	phongShader.setUniform("uAmbientColour", glm::vec3(1.0f, 1.0f, 1.0f));
 	phongShader.setUniform("uAmbientPower", 1.0f);
 
 	phongShader.setUniform("uNumDirectionalLights", 1);
@@ -87,6 +87,10 @@ void MainScene::childUpdate(float dt) {
 	phongShader.use();
 	phongShader.loadViewMatrix(camera);
 	
+	//Lighting
+	phongShader.setUniform("uDirectionalLights[0].direction", glm::vec3(-5.0, -10.0, 0.0));
+	phongShader.setUniform("uDirectionalLights[0].colour", glm::vec3(1.0, 1.0, 1.0));
+
 	//Movement of the camera with WASD and QE
 	if (input.keyboard->keyPressed(Events::W) ||
 		input.keyboard->keyPressed(Events::A) ||
