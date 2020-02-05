@@ -141,15 +141,15 @@ void main() {
 	//result += texture(uMaterial.emissionMap, inUV).xyz;
 
 	if (rimLighting) {
-		float rim = 1.1 - max(dot(viewDirection, normal), 0.0);
+		float rim = 1.1 - max(dot(viewDirection, normal), 0.0f);
 		rim = smoothstep(0.6, 1.0, rim);
-		result += vec3(rim, rim, rim) * vec3(1.0, 0.0, 0.0);
+		result += vec3(rim, rim, rim) * vec3(0.5f, 0.0f, 0.0f);
 	}
 
 	if (noLighting)	//Turns everything black due to a lack of light
-		result = vec3(0.0, 0.0, 0.0);
+		result = vec3(0.0f, 0.0f, 0.0f);
 
-	outColour = vec4(result, 1.0);
+	outColour = vec4(result, 1.0f);
 }
 
 // -----------------------------------------------

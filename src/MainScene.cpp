@@ -20,17 +20,14 @@ MainScene::MainScene(bool yn)
 	phongShader.use();
 	phongShader.loadProjectionMatrix(1600.0f, 900.0f);
 	phongShader.loadViewMatrix(camera);
-	//phongShader.setUniform("uViewProjection", glm::mat4());
 
+	//Setting the many uniform variables in the shader
 	phongShader.setUniform("uCameraPosition", camera.getPosition());
-
 	phongShader.setUniform("uAmbientColour", glm::vec3(1.0f, 1.0f, 1.0f));
 	phongShader.setUniform("uAmbientPower", 1.0f);
-
 	phongShader.setUniform("uNumDirectionalLights", 1);
-	phongShader.setUniform("uNumPointLights", 1);
+	phongShader.setUniform("uNumPointLights", 0);
 	phongShader.setUniform("uNumSpotlights", 0);
-
 	phongShader.setUniform("ambientLighting", true);
 	phongShader.setUniform("specularLighting", true);
 	phongShader.setUniform("rimLighting", false);
@@ -42,36 +39,36 @@ MainScene::MainScene(bool yn)
 
 	//Textures
 	pistolTexDiffuse = new Cappuccino::Texture("pistol/pistol-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	pistolTexSpecular = new Cappuccino::Texture("pistol/pistol-BaseColor.png", Cappuccino::TextureType::SpecularMap);
+	pistolTexSpecular = new Cappuccino::Texture("pistol/pistol-Emissive.png", Cappuccino::TextureType::SpecularMap);
 	pistolTexEmissive = new Cappuccino::Texture("pistol/pistol-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	pistolTexNormal = new Cappuccino::Texture("pistol/pistol-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	autoRifleTexDiffuse = new Cappuccino::Texture("autoRifle/autoRifle-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	autoRifleTexSpecular = new Cappuccino::Texture("autoRifle/autoRifle-BaseColor.png", Cappuccino::TextureType::SpecularMap);
+	autoRifleTexSpecular = new Cappuccino::Texture("autoRifle/autoRifle-Emissive.png", Cappuccino::TextureType::SpecularMap);
 	autoRifleTexEmissive = new Cappuccino::Texture("autoRifle/autoRifle-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	autoRifleTexNormal = new Cappuccino::Texture("autoRifle/autoRifle-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	marksmanRifleTexDiffuse = new Cappuccino::Texture("marksmanRifle/marksmanRifle-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	marksmanRifleTexSpecular = new Cappuccino::Texture("marksmanRifle/marksmanRifle-BaseColor.png", Cappuccino::TextureType::SpecularMap);
+	marksmanRifleTexSpecular = new Cappuccino::Texture("marksmanRifle/marksmanRifle-Roughness.png", Cappuccino::TextureType::SpecularMap);
 	marksmanRifleTexEmissive = new Cappuccino::Texture("marksmanRifle/marksmanRifle-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	marksmanRifleTexNormal = new Cappuccino::Texture("marksmanRifle/marksmanRifle-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	shotgunTexDiffuse = new Cappuccino::Texture("shotgun/shotgun-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	shotgunTexSpecular = new Cappuccino::Texture("shotgun/shotgun-BaseColor.png", Cappuccino::TextureType::SpecularMap);
+	shotgunTexSpecular = new Cappuccino::Texture("shotgun/shotgun-Roughness.png", Cappuccino::TextureType::SpecularMap);
 	shotgunTexEmissive = new Cappuccino::Texture("shotgun/shotgun-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	shotgunTexNormal = new Cappuccino::Texture("shotgun/shotgun-Normal.png", Cappuccino::TextureType::NormalMap);
 	
 	grenadeLauncherTexDiffuse = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
-	grenadeLauncherTexSpecular = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-BaseColor.png", Cappuccino::TextureType::SpecularMap);
+	grenadeLauncherTexSpecular = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-Roughness.png", Cappuccino::TextureType::SpecularMap);
 	grenadeLauncherTexEmissive = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-Emissive.png", Cappuccino::TextureType::EmissionMap);
 	grenadeLauncherTexNormal = new Cappuccino::Texture("grenadeLauncher/grenadeLauncher-Normal.png", Cappuccino::TextureType::NormalMap);
 
 	//Scene objects
-	pistol = new SceneObject(phongShader, { pistolTexDiffuse, pistolTexEmissive, pistolTexNormal }, { new Cappuccino::Mesh("pistol.obj") });
-	autoRifle = new SceneObject(phongShader, { autoRifleTexDiffuse, autoRifleTexEmissive, autoRifleTexNormal }, { new Cappuccino::Mesh("autoRifle.obj") });
-	marksmanRifle = new SceneObject(phongShader, { marksmanRifleTexDiffuse, marksmanRifleTexEmissive, marksmanRifleTexNormal }, { new Cappuccino::Mesh("marksmanRifle.obj") });
-	shotgun = new SceneObject(phongShader, { shotgunTexDiffuse, shotgunTexEmissive, shotgunTexNormal }, { new Cappuccino::Mesh("shotgun.obj") });
-	grenadeLauncher = new SceneObject(phongShader, { grenadeLauncherTexDiffuse, grenadeLauncherTexEmissive, grenadeLauncherTexNormal }, { new Cappuccino::Mesh("grenadeLauncher.obj") });
+	pistol = new SceneObject(phongShader, { pistolTexDiffuse, pistolTexSpecular, pistolTexEmissive, pistolTexNormal }, { new Cappuccino::Mesh("pistol.obj") });
+	autoRifle = new SceneObject(phongShader, { autoRifleTexDiffuse, autoRifleTexSpecular, autoRifleTexEmissive, autoRifleTexNormal }, { new Cappuccino::Mesh("autoRifle.obj") });
+	marksmanRifle = new SceneObject(phongShader, { marksmanRifleTexDiffuse, marksmanRifleTexSpecular, marksmanRifleTexEmissive, marksmanRifleTexNormal }, { new Cappuccino::Mesh("marksmanRifle.obj") });
+	shotgun = new SceneObject(phongShader, { shotgunTexDiffuse, shotgunTexSpecular, shotgunTexEmissive, shotgunTexNormal }, { new Cappuccino::Mesh("shotgun.obj") });
+	grenadeLauncher = new SceneObject(phongShader, { grenadeLauncherTexDiffuse, grenadeLauncherTexSpecular, grenadeLauncherTexEmissive, grenadeLauncherTexNormal }, { new Cappuccino::Mesh("grenadeLauncher.obj") });
 
 	//Spacing the models out so they're all visible
 	autoRifle->_rigidBody._position = glm::vec3(-4.0f, -1.0f, -2.0f);
@@ -97,7 +94,7 @@ void MainScene::childUpdate(float dt) {
 		input.keyboard->keyPressed(Events::S) ||
 		input.keyboard->keyPressed(Events::D) ||
 		input.keyboard->keyPressed(Events::Q) ||
-		input.keyboard->keyPressed(Events::E) ) {
+		input.keyboard->keyPressed(Events::E)) {
 
 		glm::vec3 moveForce = glm::vec3(0.0f, 0.0f, 0.0f);
 
@@ -200,13 +197,21 @@ void MainScene::childUpdate(float dt) {
 		else if (!customGrading)
 			phongShader.setUniform("customGrading", true);
 	}
-
-	//Spinning of the models for  j u i c e
-	autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
-	marksmanRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
-	pistol->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
-	shotgun->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
-	grenadeLauncher->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+	
+	if (input.keyboard->keyPressed(Events::Space)) {
+		if (spinning)
+			spinning = false;
+		else
+			spinning = true;
+	}
+	if (spinning) {
+		//Spinning of the models for  j u i c e
+		autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+		marksmanRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+		pistol->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+		shotgun->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+		grenadeLauncher->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
+	}
 }
 
 bool MainScene::init() {
