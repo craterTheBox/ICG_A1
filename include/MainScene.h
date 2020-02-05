@@ -69,4 +69,6 @@ private:
 	bool warmGrading = false;
 	bool coolGrading = false;
 	bool customGrading = false;
+
+	bool spinning = true;
 };
