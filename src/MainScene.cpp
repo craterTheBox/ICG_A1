@@ -24,10 +24,21 @@ MainScene::MainScene(bool yn)
 
 	phongShader.setUniform("uCameraPosition", camera.getPosition());
 
-	phongShader.setUniform("uAmbientColour", glm::vec3(0.0f, 0.0f, 0.80));
-	phongShader.setUniform("uAmbientPower", 0.0f);
+	phongShader.setUniform("uAmbientColour", glm::vec3(0.5f, 0.5f, 0.5f));
+	phongShader.setUniform("uAmbientPower", 1.0f);
 
 	phongShader.setUniform("uNumDirectionalLights", 1);
+	phongShader.setUniform("uNumPointLights", 1);
+	phongShader.setUniform("uNumSpotlights", 0);
+
+	phongShader.setUniform("ambientLighting", true);
+	phongShader.setUniform("specularLighting", true);
+	phongShader.setUniform("rimLighting", false);
+	phongShader.setUniform("diffuseWarp", false);
+	phongShader.setUniform("specularWarp", false);
+	phongShader.setUniform("warmGrading", false);
+	phongShader.setUniform("coolGrading", false);
+	phongShader.setUniform("customGrading", false);
 
 	//Textures
 	pistolTexDiffuse = new Cappuccino::Texture("pistol/pistol-BaseColor.png", Cappuccino::TextureType::DiffuseMap);
@@ -63,11 +74,11 @@ MainScene::MainScene(bool yn)
 	grenadeLauncher = new SceneObject(phongShader, { grenadeLauncherTexDiffuse, grenadeLauncherTexEmissive, grenadeLauncherTexNormal }, { new Cappuccino::Mesh("grenadeLauncher.obj") });
 
 	//Spacing the models out so they're all visible
-	autoRifle->_rigidBody._position = glm::vec3(-4.0f, -1.0f, 0.0f);
-	marksmanRifle->_rigidBody._position = glm::vec3(-2.0f, 1.0f, 0.0f);
-	pistol->_rigidBody._position = glm::vec3(0.0f, -1.0f, 0.0f);
-	shotgun->_rigidBody._position = glm::vec3(2.0f, 1.0f, 0.0f);
-	grenadeLauncher->_rigidBody._position = glm::vec3(4.0f, -1.0f, 0.0f);
+	autoRifle->_rigidBody._position = glm::vec3(-4.0f, -1.0f, -2.0f);
+	marksmanRifle->_rigidBody._position = glm::vec3(-2.0f, 1.0f, -2.0f);
+	pistol->_rigidBody._position = glm::vec3(0.0f, -1.0f, -2.0f);
+	shotgun->_rigidBody._position = glm::vec3(2.0f, 1.0f, -2.0f);
+	grenadeLauncher->_rigidBody._position = glm::vec3(4.0f, -1.0f, -2.0f);
 
 	glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
@@ -108,38 +119,45 @@ void MainScene::childUpdate(float dt) {
 	}
 
 	//Toggle Keys
+	//Using these inputs will change the uniform boolean in the shader, thus changing what executes in the shader's main function
 	if (input.keyboard->keyPressed(Events::One)) {
 		//No lighting
 		phongShader.setUniform("ambientLighting", false);
 		phongShader.setUniform("specularLighting", false);
 		phongShader.setUniform("rimLighting", false);
+		phongShader.setUniform("noLighting", true);
 	}
 	else if (input.keyboard->keyPressed(Events::Two)) {
 		//Ambient only
 		phongShader.setUniform("ambientLighting", true);
 		phongShader.setUniform("specularLighting", false);
 		phongShader.setUniform("rimLighting", false);
+		phongShader.setUniform("noLighting", false);
 	}
 	else if (input.keyboard->keyPressed(Events::Three)) {
 		//Specular only
 		phongShader.setUniform("ambientLighting", false);
 		phongShader.setUniform("specularLighting", true);
 		phongShader.setUniform("rimLighting", false);
+		phongShader.setUniform("noLighting", false);
 	}
 	else if (input.keyboard->keyPressed(Events::Four)) {
 		//Specular + Rim lighting
 		phongShader.setUniform("ambientLighting", false);
 		phongShader.setUniform("specularLighting", true);
 		phongShader.setUniform("rimLighting", true);
+		phongShader.setUniform("noLighting", false);
 	}
 	else if (input.keyboard->keyPressed(Events::Five)) {
 		//Ambient + Specular + Rim lighting
-		phongShader.setUniform("ambientLighting", false);
-		phongShader.setUniform("specularLighting", false);
-		phongShader.setUniform("rimLighting", false);
+		phongShader.setUniform("ambientLighting", true);
+		phongShader.setUniform("specularLighting", true);
+		phongShader.setUniform("rimLighting", true);
+		phongShader.setUniform("noLighting", false);
 	}
 	else if (input.keyboard->keyPressed(Events::Six)) {
 		//TOGGLE diffuse warp/ramp
+		phongShader.setUniform("noLighting", false);
 		if (diffuseWarp)
 			phongShader.setUniform("diffuseWarp", false);
 		else if (!diffuseWarp)
@@ -147,6 +165,7 @@ void MainScene::childUpdate(float dt) {
 	}
 	else if (input.keyboard->keyPressed(Events::Seven)) {
 		//TOGGLE specular warp/ramp
+		phongShader.setUniform("noLighting", false);
 		if (specularWarp)
 			phongShader.setUniform("specularWarp", false);
 		else if (!specularWarp)
@@ -154,6 +173,7 @@ void MainScene::childUpdate(float dt) {
 	}
 	else if (input.keyboard->keyPressed(Events::Eight)) { 
 		//TOGGLE colour grading warm
+		phongShader.setUniform("noLighting", false);
 		if (warmGrading)
 			phongShader.setUniform("warmGrading", false);
 		else if (!warmGrading)
@@ -161,6 +181,7 @@ void MainScene::childUpdate(float dt) {
 	}
 	else if (input.keyboard->keyPressed(Events::Nine)) {
 		//TOGGLE colour grading cool
+		phongShader.setUniform("noLighting", false);
 		if (coolGrading)
 			phongShader.setUniform("coolGrading", false);
 		else if (!coolGrading)
@@ -169,11 +190,13 @@ void MainScene::childUpdate(float dt) {
 	}
 	else if (input.keyboard->keyPressed(Events::Zero)) {
 		//TOGGLE colour grading custom effect
+		phongShader.setUniform("noLighting", false);
 		if (customGrading)
 			phongShader.setUniform("customGrading", false);
 		else if (!customGrading)
 			phongShader.setUniform("customGrading", true);
 	}
+
 	//Spinning of the models for  j u i c e
 	autoRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
 	marksmanRifle->_transform.rotate(glm::vec3(0.0f, 1.0f, 0.0f), 45 * dt);
