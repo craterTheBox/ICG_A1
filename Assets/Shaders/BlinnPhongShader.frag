@@ -51,6 +51,7 @@ struct Material {
 	sampler2D specularMap;
 	sampler2D emissionMap;
 	float roughness;
+	//texture1D warpTex;
 };
 
 // -----------------------------------------------
@@ -88,6 +89,8 @@ uniform bool customGrading;
 vec3 calculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDirection);
 vec3 calculatePointLight(PointLight light, vec3 normal, vec3 viewDirection);
 vec3 calculateSpotlight(Spotlight light, vec3 normal, vec3 viewDirection);
+//vec3 diffuseWarp(vec3 pos, vec3 normal, vec3 lightPos);
+//vec3 specularWarp(vec3 pos, vec3 normal, vec3 lightPos);
 
 // -----------------------------------------------
 // ----- MAIN ------------------------------------
@@ -116,18 +119,14 @@ void main() {
 			result += calculateSpotlight(uSpotlights[i], normal, viewDirection);
 		}
 	}
-	
+
 	if (diffuseWarp) {
-		//
-		result += vec3(0.0f, 0.0f, 0.0f);
+		//diffuseWarp(inWorldPosition, normal, viewDirection);
+        result += vec3(0.0f, 0.0f, 0.0f);
 	}
 	if (specularWarp) {
-		//
-		result += vec3(0.0f, 0.0f, 0.0f);
-	}
-	if (warmGrading) {
-		//
-		result += vec3(0.0f, 0.0f, 0.0f);
+		//specularWarp(inWorldPosition, normal, viewDirection);
+        result += vec3(0.0f, 0.0f, 0.0f);
 	}
 	if (coolGrading) {
 		//
@@ -217,3 +216,23 @@ vec3 calculateSpotlight(Spotlight light, vec3 normal, vec3 viewDirection) {
 
 	return intensity * attenuation * (diffuse + specular);
 }
+
+//vec3 specularWarp(vec3 pos, vec3 normal, vec3 lightPos){
+//	vec3 lightDirrection = lightPos - pos; 
+//	lightDirection = normalize(lightDirection);
+//
+//	//texture map values
+//	vec3 WarpPos = dot(lightDirection, normal) * 0.5 + 0.5;
+//	
+//	return tex1D(WarpTex, WarpPos);
+//}
+
+//vec3 diffuseWarp(vec3 pos, vec3 normal, vec3 lightPos){
+//	vec3 lightDirrection = lightPos - pos; 
+//	lightDirection = normalize(lightDirection);
+//
+//	//texture map values
+//	vec3 warpPos = dot(lightDirection, normal) * 0.5 + 0.5;
+//	
+//	return tex1D(warpTex, warpPos);
+//}

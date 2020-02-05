@@ -59,7 +59,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;Win64;GLFW_INCLUDE_NONE;WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;Engine;Engine\Externals\fmod\include;Engine\Externals\freetype\include;Engine\Externals\glad\include;Engine\Externals\glfw3\include;Engine\Externals\glm\include;Engine\Externals\imgui\include;Engine\Externals\stb\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Engine;Engine\Externals\fmod\include;Engine\Externals\freetype\include;Engine\Externals\glad\include;Engine\Externals\glfw3\include;Engine\Externals\glm\include;Engine\Externals\imgui\include;Engine\Externals\stb\include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -77,7 +77,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;Win64;GLFW_INCLUDE_NONE;WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;Engine;Engine\Externals\fmod\include;Engine\Externals\freetype\include;Engine\Externals\glad\include;Engine\Externals\glfw3\include;Engine\Externals\glm\include;Engine\Externals\imgui\include;Engine\Externals\stb\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Engine;Engine\Externals\fmod\include;Engine\Externals\freetype\include;Engine\Externals\glad\include;Engine\Externals\glfw3\include;Engine\Externals\glm\include;Engine\Externals\imgui\include;Engine\Externals\stb\include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -95,11 +95,60 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\MainScene.cpp" />
+    <ClInclude Include="include\MainScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\MainScene.h" />
+    <ClCompile Include="src\MainScene.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Meshes\autoRifle.obj" />
+    <None Include="Assets\Meshes\grenadeLauncher.obj" />
+    <None Include="Assets\Meshes\marksmanRifle.obj" />
+    <None Include="Assets\Meshes\pistol.obj" />
+    <None Include="Assets\Meshes\shotgun.obj" />
+    <None Include="Assets\Shaders\BlinnPhongShader.frag" />
+    <None Include="Assets\Shaders\BlinnPhongShader.vert" />
+    <None Include="Assets\Shaders\hitBox.frag" />
+    <None Include="Assets\Shaders\hitBox.vert" />
+    <None Include="Assets\Shaders\mainFrag.frag" />
+    <None Include="Assets\Shaders\mainVert.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Textures\autoRifle\autoRifle-BaseColor.png" />
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Emissive.png" />
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Height.png" />
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Metallic.png" />
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Normal.png" />
+    <Image Include="Assets\Textures\autoRifle\autoRifle-Roughness.png" />
+    <Image Include="Assets\Textures\defaultEmission.png" />
+    <Image Include="Assets\Textures\defaultHeight.png" />
+    <Image Include="Assets\Textures\defaultNorm.png" />
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-BaseColor.png" />
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Emissive.png" />
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Height.png" />
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Metallic.png" />
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Normal.png" />
+    <Image Include="Assets\Textures\grenadeLauncher\grenadeLauncher-Roughness.png" />
+    <Image Include="Assets\Textures\marksmanRifle\markmanRifle-Roughness.png" />
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-AO.png" />
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-BaseColor.png" />
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Emissive.png" />
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Height.png" />
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Metallic.png" />
+    <Image Include="Assets\Textures\marksmanRifle\marksmanRifle-Normal.png" />
+    <Image Include="Assets\Textures\pistol\pistol-BaseColor.png" />
+    <Image Include="Assets\Textures\pistol\pistol-Emissive.png" />
+    <Image Include="Assets\Textures\pistol\pistol-Height.png" />
+    <Image Include="Assets\Textures\pistol\pistol-Metallic.png" />
+    <Image Include="Assets\Textures\pistol\pistol-Normal.png" />
+    <Image Include="Assets\Textures\pistol\pistol-Roughness.png" />
+    <Image Include="Assets\Textures\shotgun\shotgun-BaseColor.png" />
+    <Image Include="Assets\Textures\shotgun\shotgun-Emissive.png" />
+    <Image Include="Assets\Textures\shotgun\shotgun-Height.png" />
+    <Image Include="Assets\Textures\shotgun\shotgun-Metallic.png" />
+    <Image Include="Assets\Textures\shotgun\shotgun-Normal.png" />
+    <Image Include="Assets\Textures\shotgun\shotgun-Roughness.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
